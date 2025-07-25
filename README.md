@@ -54,7 +54,7 @@ With this code, you can create multi-service chats, service bots, or any other s
 
 5. **Start the application**
    ```bash
-   npm start
+      npm start
    ```
 
 ### Docker Installation
