@@ -1,0 +1,1153 @@
+{
+  "info": {
+    "name": "WhatsApp Hard API - Node.js",
+    "description": "Complete WhatsApp API collection for multi-device support using Baileys",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{TOKEN}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:3333",
+      "type": "string"
+    },
+    {
+      "key": "TOKEN",
+      "value": "YOUR_TOKEN",
+      "type": "string"
+    },
+    {
+      "key": "ADMIN_TOKEN",
+      "value": "da71b564a1ed7e998204ca0d7cae38e791ca2154",
+      "type": "string"
+    },
+    {
+      "key": "INSTANCE_KEY",
+      "value": "my-instance",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "🏠 Status Check",
+      "item": [
+        {
+          "name": "Check API Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/status",
+              "host": ["{{BASE_URL}}"],
+              "path": ["status"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "📱 Instance Management",
+      "item": [
+        {
+          "name": "Initialize Instance",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"{{INSTANCE_KEY}}\",\n  \"webhook\": true,\n  \"webhookUrl\": \"https://your-webhook-url.com/webhook\",\n  \"browser\": \"My WhatsApp API\",\n  \"ignoreGroups\": false,\n  \"webhookEvents\": [\n    \"messages.upsert\",\n    \"connection.update\",\n    \"qrCode.update\"\n  ],\n  \"messagesRead\": false,\n  \"base64\": true\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/instance/init?admintoken={{ADMIN_TOKEN}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["instance", "init"],
+              "query": [
+                {
+                  "key": "admintoken",
+                  "value": "{{ADMIN_TOKEN}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get QR Code (HTML)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/instance/qr?key={{INSTANCE_KEY}}&admintoken={{ADMIN_TOKEN}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["instance", "qr"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                },
+                {
+                  "key": "admintoken",
+                  "value": "{{ADMIN_TOKEN}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get QR Code (Base64)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/instance/qrbase64?key={{INSTANCE_KEY}}&admintoken={{ADMIN_TOKEN}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["instance", "qrbase64"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                },
+                {
+                  "key": "admintoken",
+                  "value": "{{ADMIN_TOKEN}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Pairing Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"number\": \"5511999999999\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/instance/getcode?key={{INSTANCE_KEY}}&admintoken={{ADMIN_TOKEN}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["instance", "getcode"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                },
+                {
+                  "key": "admintoken",
+                  "value": "{{ADMIN_TOKEN}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Instance Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/instance/info?key={{INSTANCE_KEY}}&admintoken={{ADMIN_TOKEN}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["instance", "info"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                },
+                {
+                  "key": "admintoken",
+                  "value": "{{ADMIN_TOKEN}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List All Instances",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/instance/list?admintoken={{ADMIN_TOKEN}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["instance", "list"],
+              "query": [
+                {
+                  "key": "admintoken",
+                  "value": "{{ADMIN_TOKEN}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout Instance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/instance/logout?key={{INSTANCE_KEY}}&admintoken={{ADMIN_TOKEN}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["instance", "logout"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                },
+                {
+                  "key": "admintoken",
+                  "value": "{{ADMIN_TOKEN}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Instance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/instance/delete?key={{INSTANCE_KEY}}&admintoken={{ADMIN_TOKEN}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["instance", "delete"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                },
+                {
+                  "key": "admintoken",
+                  "value": "{{ADMIN_TOKEN}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete All Instances",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/instance/deleteAll?admintoken={{ADMIN_TOKEN}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["instance", "deleteAll"],
+              "query": [
+                {
+                  "key": "admintoken",
+                  "value": "{{ADMIN_TOKEN}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Inactive Instances",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/instance/deleteInactives?admintoken={{ADMIN_TOKEN}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["instance", "deleteInactives"],
+              "query": [
+                {
+                  "key": "admintoken",
+                  "value": "{{ADMIN_TOKEN}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Restore Sessions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/instance/restore?admintoken={{ADMIN_TOKEN}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["instance", "restore"],
+              "query": [
+                {
+                  "key": "admintoken",
+                  "value": "{{ADMIN_TOKEN}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "💬 Messages",
+      "item": [
+        {
+          "name": "Send Text Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"5511999999999\",\n  \"typeId\": \"user\",\n  \"message\": \"Hello from WhatsApp API! 👋\",\n  \"options\": {\n    \"delay\": 0,\n    \"replyFrom\": \"\"\n  },\n  \"groupOptions\": {\n    \"markUser\": \"\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/message/text?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["message", "text"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send Image from URL",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"5511999999999\",\n  \"typeId\": \"user\",\n  \"url\": \"https://example.com/image.jpg\",\n  \"type\": \"image\",\n  \"options\": {\n    \"caption\": \"Image caption here\",\n    \"delay\": 0,\n    \"replyFrom\": \"\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/message/sendurlfile?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["message", "sendurlfile"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send Base64 File",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"5511999999999\",\n  \"typeId\": \"user\",\n  \"base64string\": \"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==\",\n  \"filename\": \"test.png\",\n  \"type\": \"image\",\n  \"options\": {\n    \"caption\": \"Base64 image\",\n    \"delay\": 0\n  }\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/message/sendbase64file?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["message", "sendbase64file"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send Media from URL",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"5511999999999\",\n  \"typeId\": \"user\",\n  \"url\": \"https://example.com/video.mp4\",\n  \"type\": \"video\",\n  \"options\": {\n    \"caption\": \"Video caption\",\n    \"delay\": 0\n  }\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/message/mediaurl?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["message", "mediaurl"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send Contact",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"5511999999999\",\n  \"typeId\": \"user\",\n  \"fullName\": \"John Doe\",\n  \"organization\": \"Company Name\",\n  \"phoneNumber\": \"+5511888888888\",\n  \"email\": \"john@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/message/contact?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["message", "contact"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send List Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"5511999999999\",\n  \"typeId\": \"user\",\n  \"title\": \"Select an option\",\n  \"description\": \"Choose from the options below\",\n  \"buttonText\": \"View Options\",\n  \"footerText\": \"WhatsApp API\",\n  \"sections\": [\n    {\n      \"title\": \"Section 1\",\n      \"rows\": [\n        {\n          \"title\": \"Option 1\",\n          \"description\": \"Description for option 1\",\n          \"rowId\": \"option1\"\n        },\n        {\n          \"title\": \"Option 2\",\n          \"description\": \"Description for option 2\",\n          \"rowId\": \"option2\"\n        }\n      ]\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/message/list?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["message", "list"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send Reaction",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"5511999999999\",\n  \"key\": {\n    \"remoteJid\": \"5511999999999@s.whatsapp.net\",\n    \"id\": \"MESSAGE_ID_HERE\",\n    \"participant\": \"\"\n  },\n  \"emoji\": \"👍\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/message/react?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["message", "react"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Read Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"remoteJid\": \"5511999999999@s.whatsapp.net\",\n  \"id\": \"MESSAGE_ID_HERE\",\n  \"participant\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/message/read?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["message", "read"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Set Status (Typing/Recording)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"5511999999999\",\n  \"typeId\": \"user\",\n  \"status\": \"composing\",\n  \"delay\": 5\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/message/setstatus?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["message", "setstatus"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "👥 Groups",
+      "item": [
+        {
+          "name": "Create Group",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"My New Group\",\n  \"users\": [\n    \"5511999999999\",\n    \"5511888888888\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/group/create?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["group", "create"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Groups",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/group/getallgroups?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["group", "getallgroups"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Group Info by ID",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"GROUP_ID_HERE@g.us\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/group/groupidinfo?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["group", "groupidinfo"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Participants",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"GROUP_ID_HERE@g.us\",\n  \"users\": [\n    \"5511999999999\",\n    \"5511888888888\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/group/inviteuser?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["group", "inviteuser"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Participants",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"GROUP_ID_HERE@g.us\",\n  \"users\": [\n    \"5511999999999\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/group/removeuser?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["group", "removeuser"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Make Admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"GROUP_ID_HERE@g.us\",\n  \"users\": [\n    \"5511999999999\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/group/makeadmin?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["group", "makeadmin"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Demote Admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"GROUP_ID_HERE@g.us\",\n  \"users\": [\n    \"5511999999999\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/group/demoteadmin?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["group", "demoteadmin"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Invite Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"GROUP_ID_HERE@g.us\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/group/getinvitecode?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["group", "getinvitecode"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Join Group by URL",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://chat.whatsapp.com/INVITE_CODE_HERE\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/group/join?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["group", "join"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Leave Group",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"GROUP_ID_HERE@g.us\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/group/leave?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["group", "leave"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Group Subject",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"GROUP_ID_HERE@g.us\",\n  \"subject\": \"New Group Name\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/group/updatesubject?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["group", "updatesubject"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Group Description",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"GROUP_ID_HERE@g.us\",\n  \"description\": \"New group description\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/group/updatedescription?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["group", "updatedescription"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Group Settings",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"GROUP_ID_HERE@g.us\",\n  \"action\": \"announcement\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/group/settingsupdate?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["group", "settingsupdate"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🔧 Miscellaneous",
+      "item": [
+        {
+          "name": "Check if Number is on WhatsApp",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numbers\": [\n    \"5511999999999\",\n    \"5511888888888\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/misc/onwhatsapp?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["misc", "onwhatsapp"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Download Profile Picture",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"5511999999999\",\n  \"typeId\": \"user\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/misc/downProfile?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["misc", "downProfile"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Status",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"5511999999999\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/misc/getStatus?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["misc", "getStatus"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Block/Unblock User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"5511999999999\",\n  \"status\": \"block\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/misc/blockUser?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["misc", "blockUser"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Contacts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/misc/contacts?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["misc", "contacts"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Chats",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/misc/chats?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["misc", "chats"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Set My Status",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"available\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/misc/mystatus?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["misc", "mystatus"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Profile Picture",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"5511999999999\",\n  \"typeId\": \"user\",\n  \"url\": \"https://example.com/profile-picture.jpg\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/misc/updateProfilePicture?key={{INSTANCE_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["misc", "updateProfilePicture"],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{INSTANCE_KEY}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
