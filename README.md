@@ -35,8 +35,8 @@ With this code, you can create multi-service chats, service bots, or any other s
 
 2. **Clone this repository**
    ```bash
-   git clone https://github.com/renatoiub/whatsapp-hard-api-node
-   cd whatsapp-hard-api-node
+   git clone https://github.com/inaat/whatsapp-web-api
+   cd whatsapp-web-api
    ```
 
 3. **Install dependencies**
