@@ -16,10 +16,10 @@ server = app.listen(config.port, async () => {
     logger.info(`Listening on port ${config.port}`)
    
     if (config.restoreSessionsOnStartup) {
-        logger.info(`Restaurando sessions`)
+        logger.info(`Restoring sessions`)
         const session = new Session()
         let restoreSessions = await session.restoreSessions()
-        logger.info(`Sessions restauradas`)
+        logger.info(`Sessions restored`)
     }
 })
 
