@@ -395,6 +395,43 @@ exports.list = async (req, res) => {
     });
 };
 
+exports.listForDashboard = async (req, res) => {
+    try {
+        const { user } = req;
+        
+        let instance = Object.keys(WhatsAppInstances).map(async (key) =>
+            WhatsAppInstances[key].getInstanceDetail(key)
+        );
+        let data = await Promise.all(instance);
+
+        // If user is admin, return all instances
+        if (user.role === 'admin') {
+            return res.json({
+                error: false,
+                message: 'All instances listed',
+                data: data,
+            });
+        }
+        
+        // If user is regular user, filter to only their instance
+        const userInstances = data.filter(instance => 
+            instance.instance_key === user.username
+        );
+
+        return res.json({
+            error: false,
+            message: 'User instances listed',
+            data: userInstances,
+        });
+    } catch (error) {
+        console.error('Error listing instances for dashboard:', error);
+        return res.status(500).json({
+            error: true,
+            message: 'Internal server error'
+        });
+    }
+};
+
 exports.deleteInactives = async (req, res) => {
     let instance = Object.keys(WhatsAppInstances).map(async (key) =>
         WhatsAppInstances[key].getInstanceDetail(key)

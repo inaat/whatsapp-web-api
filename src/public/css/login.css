@@ -1,0 +1,410 @@
+/* Login Page Styles */
+:root {
+    --primary-color: #25d366;
+    --secondary-color: #128c7e;
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --light-gray: #f8f9fa;
+    --dark-gray: #6c757d;
+    --border-color: #dee2e6;
+    --shadow: 0 8px 32px rgba(0,0,0,0.1);
+    --shadow-hover: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+/* Background Pattern */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.login-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: slideIn 0.6s ease-out;
+}
+
+.login-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-5px);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-align: center;
+    padding: 40px 30px;
+    position: relative;
+}
+
+.login-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.3);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.login-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.login-header p {
+    opacity: 0.9;
+    font-size: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.login-form {
+    padding: 40px 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 15px 50px 15px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.1);
+    transform: translateY(-2px);
+}
+
+.input-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--dark-gray);
+    transition: color 0.3s ease;
+    margin-top: 12px;
+}
+
+.form-group input:focus + .input-icon {
+    color: var(--primary-color);
+}
+
+/* Custom Checkbox */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--dark-gray);
+}
+
+.checkbox-container input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    margin-right: 10px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkmark::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.checkbox-container input:checked + .checkmark {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.checkbox-container input:checked + .checkmark::after {
+    opacity: 1;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.login-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-text {
+    transition: opacity 0.3s ease;
+}
+
+.loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.login-footer {
+    background: var(--light-gray);
+    padding: 25px 30px;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+}
+
+.login-footer p {
+    color: var(--dark-gray);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.credentials span {
+    font-size: 13px;
+    color: #666;
+    background: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}
+
+/* Alert Styles */
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 400px;
+    animation: slideInRight 0.3s ease;
+}
+
+.alert-content {
+    background: white;
+    border-radius: 10px;
+    padding: 15px 20px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--danger-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.alert.success .alert-content {
+    border-left-color: var(--success-color);
+}
+
+.alert.warning .alert-content {
+    border-left-color: var(--warning-color);
+}
+
+.alert-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--dark-gray);
+    margin-left: 15px;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 10px;
+    }
+    
+    .login-card {
+        border-radius: 15px;
+    }
+    
+    .login-header {
+        padding: 30px 20px;
+    }
+    
+    .login-form {
+        padding: 30px 20px;
+    }
+    
+    .login-footer {
+        padding: 20px;
+    }
+    
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .login-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .credentials {
+        gap: 8px;
+    }
+    
+    .alert {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+}
+
+/* Focus States for Accessibility */
+.login-btn:focus,
+.form-group input:focus,
+.checkbox-container:focus-within {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Loading State */
+.login-btn.loading .btn-text {
+    opacity: 0;
+}
+
+.login-btn.loading .loading-spinner {
+    display: block;
+}
+
+.login-btn:not(.loading) .loading-spinner {
+    display: none;
+}

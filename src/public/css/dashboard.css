@@ -1,0 +1,431 @@
+/* Dashboard Styles */
+:root {
+    --primary-color: #25d366;
+    --secondary-color: #128c7e;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --light-gray: #f8f9fa;
+    --dark-gray: #6c757d;
+    --border-color: #dee2e6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--light-gray);
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.header-left h1 {
+    color: var(--secondary-color);
+    font-size: 2rem;
+    margin: 0;
+}
+
+.welcome-text {
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: block;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn-secondary {
+    background-color: var(--dark-gray);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-warning {
+    background-color: var(--warning-color);
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+/* Sections */
+section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+section h2 {
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+/* Instances Grid */
+.instances-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.instance-card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    background: #fafafa;
+    transition: all 0.3s ease;
+}
+
+.instance-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.instance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.instance-key {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.status-connected {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-disconnected {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.instance-info {
+    margin-bottom: 15px;
+}
+
+.instance-info p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: var(--dark-gray);
+}
+
+.instance-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.instance-actions .btn {
+    font-size: 12px;
+    padding: 6px 12px;
+}
+
+/* Form Styles */
+.message-form {
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(37, 211, 102, 0.2);
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--dark-gray);
+}
+
+.close:hover {
+    color: var(--danger-color);
+}
+
+.modal h3 {
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+#qrCodeContainer {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#qrCodeImage {
+    max-width: 256px;
+    max-height: 256px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+/* Toast Notifications */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+    z-index: 1001;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast.success {
+    background-color: #28a745;
+}
+
+.toast.error {
+    background-color: var(--danger-color);
+}
+
+.toast.warning {
+    background-color: var(--warning-color);
+    color: #212529;
+}
+
+.toast.info {
+    background-color: #17a2b8;
+}
+
+/* Loading Spinner */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .instances-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .instance-actions {
+        justify-content: center;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--dark-gray);
+}
+
+.empty-state img {
+    width: 64px;
+    height: 64px;
+    opacity: 0.5;
+    margin-bottom: 20px;
+}
+
+/* QR Code refresh button */
+#refreshQRBtn {
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* Instance info styling */
+.instance-info .info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.instance-info .info-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-weight: 500;
+    color: #555;
+}
+
+.info-value {
+    color: var(--dark-gray);
+    font-size: 13px;
+}

@@ -6,8 +6,6 @@ yarn.lock
 # APPLICATION
 .env
 sessiondata
-db/
-!db/init_start.txt
 
 # IDEs
 .vscode/settings.json

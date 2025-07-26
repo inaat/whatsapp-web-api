@@ -5,6 +5,7 @@ const loginVerify = require('../middlewares/loginCheck')
 const { protectRoutes } = require('../../config/config');
 const tokenCheck = require('../middlewares/tokenCheck');
 const adminToken = require('../middlewares/adminToken');
+const { authCheck } = require('../middlewares/authCheck');
 
 
 
@@ -21,6 +22,7 @@ router.route('/restore').get(adminToken,controller.restore)
 router.route('/logout').get(keyVerify, loginVerify, controller.logout)
 router.route('/delete').get(keyVerify, controller.delete)
 router.route('/list').get(adminToken,controller.list)
+router.route('/list-dashboard').get(authCheck,controller.listForDashboard)
 router.route('/deleteInactives').get(adminToken,controller.deleteInactives)
 router.route('/deleteAll').get(adminToken,controller.deleteAll)
 router.route('/getcode').post(keyVerify,controller.getcode)
