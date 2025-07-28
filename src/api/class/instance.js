@@ -24,7 +24,6 @@ const {
 	jid,
 	isLid,
 	isJidBroadcast,
-    makeInMemoryStore,
     proto,
     delay,
     useMultiFileAuthState,
@@ -47,7 +46,7 @@ const generateVC = require('../helper/genVc');
 const axios = require('axios');
 const config = require('../../config/config');
 const downloadMessage = require('../helper/downloadMsg');
-const dados = makeInMemoryStore({ pino });
+// const dados = makeInMemoryStore({ pino });
 const fs = require('fs').promises;
 const getMIMEType = require('mime-types');
 const readFileAsync = promisify(fs.readFile);
@@ -600,9 +599,9 @@ async init() {
     this.socketConfig.browser = Object.values(b.browser);
 	this.socketConfig.emitOwnEvents = true;
     this.instance.sock = makeWASocket(this.socketConfig);
-	const dados = makeInMemoryStore({ pino });
+	// const dados = makeInMemoryStore({ pino });
     this.setHandler(); 
- 	dados?.bind(this.instance.sock?.ev);
+ 	// dados?.bind(this.instance.sock?.ev);
     return this;
 }
 

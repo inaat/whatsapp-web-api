@@ -34,9 +34,8 @@
     "dependencies": {
         "@adiwajshing/keyed-db": "^0.2.4",
         "@ffmpeg-installer/ffmpeg": "^1.1.0",
-        "@whiskeysockets/baileys": "github:renatoiub/baileys",
+        "@whiskeysockets/baileys": "^6.7.8",
         "axios": "^1.1.3",
-        "baileys": "github:renatoiub/baileys",
         "connect-flash": "^0.1.1",
         "cookie-parser": "^1.4.6",
         "dotenv": "^16.0.3",
