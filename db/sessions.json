@@ -1,3 +1,16 @@
 [
- 
+  {
+    "key": "CH",
+    "ignoreGroups": false,
+    "webhook": false,
+    "base64": false,
+    "webhookUrl": false,
+    "browser": "WhatsApp API",
+    "webhookEvents": [
+      "messages.upsert",
+      "connection.update",
+      "qrCode.update"
+    ],
+    "messagesRead": false
+  }
 ]

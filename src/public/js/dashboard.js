@@ -203,7 +203,7 @@ class WhatsAppDashboard {
 
     async showQRCode(instanceKey) {
         try {
-            const response = await fetch(`${this.baseURL}/instance/qrbase64?key=${instanceKey}`, {
+            const response = await fetch(`${this.baseURL}/instance/qrbase64?key=${instanceKey}&admintoken=${this.token}`, {
                 headers: this.getHeaders()
             });
             
@@ -226,7 +226,7 @@ class WhatsAppDashboard {
 
             // Auto-refresh QR code every 30 seconds
             this.qrRefreshInterval = setInterval(async () => {
-                const refreshResponse = await fetch(`${this.baseURL}/instance/qrbase64?key=${instanceKey}`, {
+                const refreshResponse = await fetch(`${this.baseURL}/instance/qrbase64?key=${instanceKey}&admintoken=${this.token}`, {
                     headers: this.getHeaders()
                 });
                 const refreshData = await refreshResponse.json();
